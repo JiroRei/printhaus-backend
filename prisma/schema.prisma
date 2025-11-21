@@ -1,0 +1,87 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url = env("DATABASE_URL")
+}
+
+enum EmployeeType {
+  EMPLOYEE
+  ADMIN
+}
+
+enum PaymentMethod {
+  CASH
+  DIGITAL
+}
+
+model Employee{
+  id String @unique @default(uuid())
+
+  nameFirst String @map("first_name")
+  nameLast String? @map("last_name")
+  userNameShi String @map("employee_username")
+  employeeTypeShi EmployeeType @map("employee_type")
+  wordPass String @map("user_password")
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updateddAt DateTime @updatedAt @map("updated_at")
+
+  @@map("employees")
+}
+
+
+
+model PrintValues{
+  id String @unique @default(uuid())
+
+  transactionId Int @id @default(autoincrement())
+
+  paperSize String @map("paper_size")
+  orientation String @map("print_orientation")
+  printCopies Int @map("print_copies")
+  printColor String @map("print_color")
+  printPrice Decimal @db.Decimal(10,2) @map("print_price")
+  printer String @map("printer")
+  paymentMethod PaymentMethod @map("payment_method")
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updateddAt DateTime @updatedAt @map("updated_at")
+
+  @@map("printvalues")
+}
+
+enum Category {
+  A3
+  A4
+  A5
+  LETTER
+  LEGAL
+  TABLOID
+}
+
+model InventoryPaper{
+  id String @unique @default(uuid())
+
+  productID Int @id @default(autoincrement())
+
+  productName String @map("product_name")
+  productImg String @map("product_image")
+  productCategory Category @map("product_category")
+  productAmt Int @map("product_amount")
+  paperAmt Int @map("paper_amount_per_ream")
+  productPrice Decimal @db.Decimal(10,2) @map("product_price") 
+
+  @@map("inventorypaper")
+}
+
+
+
