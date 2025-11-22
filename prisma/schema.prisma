@@ -80,5 +80,8 @@ model InventoryPaper{
   paperAmt Int @map("paper_amount_per_ream")
   productPrice Decimal @db.Decimal(10,2) @map("product_price") 
 
+  createdAt DateTime @default(now()) @map("created_at")
+  updateddAt DateTime @updatedAt @map("updated_at")
+
   @@map("inventorypaper")
 }
