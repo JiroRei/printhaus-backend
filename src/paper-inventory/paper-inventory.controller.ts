@@ -19,4 +19,10 @@ export class PaperInventoryController {
     async getAllPaperInventory(): Promise<GetAllPaperInventoryResponse>{
       return this.paperInventoryService.getAllPaperInventory();
     }
+  
+  @Post("use")
+    usePaper(@Body() body: { reamId: string; papersUsed: number }) {
+      return this.paperInventoryService.usePaper(body);
+    }
+
 }

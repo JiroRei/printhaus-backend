@@ -1,5 +1,5 @@
 import { Category } from "@prisma/client";
-import {  IsNotEmpty, IsNumber, IsString } from "class-validator";
+import {  IsEnum, IsNotEmpty, IsNumber,  IsString } from "class-validator";
 
 
 export class CreatePaperInvDTO{
@@ -7,11 +7,7 @@ export class CreatePaperInvDTO{
     @IsNotEmpty()
     productName: string
 
-    @IsString()
-    @IsNotEmpty()
-    productImg: string
-
-    @IsString()
+    @IsEnum(Category)
     @IsNotEmpty()
     productCategory: Category
 

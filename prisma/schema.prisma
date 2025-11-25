@@ -74,7 +74,6 @@ model InventoryPaper{
   productID Int @id @default(autoincrement())
 
   productName String @map("product_name")
-  productImg String @map("product_image")
   productCategory Category @map("product_category")
   productAmt Int @map("product_amount")
   paperAmt Int @map("paper_amount_per_ream")
